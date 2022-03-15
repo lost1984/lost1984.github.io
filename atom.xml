@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lost1984.github.io</id>
-    <title>Gridea</title>
-    <updated>2022-03-15T07:51:58.998Z</updated>
+    <title>大雨小瑜</title>
+    <updated>2022-03-15T07:52:41.758Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lost1984.github.io"/>
     <link rel="self" href="https://lost1984.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>工作，生活和电脑</subtitle>
     <logo>https://lost1984.github.io/images/avatar.png</logo>
     <icon>https://lost1984.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2022, Gridea</rights>
+    <rights>All rights reserved 2022, 大雨小瑜</rights>
 </feed>
