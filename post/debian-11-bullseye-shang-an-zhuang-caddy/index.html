@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title> Debian 11 Bullseye 上安装 Caddy | 大雨小瑜</title>
+<meta name="description" content="工作，生活和电脑">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://lost1984.github.io/favicon.ico?v=1647331046896">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://lost1984.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://lost1984.github.io">
+        <img class="avatar" src="https://lost1984.github.io/images/avatar.png?v=1647331046896" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://lost1984.github.io">
+        <h1 class="site-title">大雨小瑜</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title"> Debian 11 Bullseye 上安装 Caddy</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2022-03-15</span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="步骤-1-更新系统">步骤 1. 更新系统</h2>
+<p>在我们安装任何软件之前，通过apt在终端中运行以下命令来确保您的系统是最新的很重要：</p>
+<p>apt update<br>
+apt upgrade<br>
+apt install curl debian-archive-keyring apt-transport-https</p>
+<h2 id="步骤-2-在-debian-11-上安装-caddy">步骤 2. 在 Debian 11 上安装 Caddy。</h2>
+<p>默认情况下，Caddy 软件包在 Debian 11 基础存储库中不可用。现在运行以下命令将 Caddy 存储库添加到您的 Debian 系统：</p>
+<p>curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list</p>
+<p>接下来，导入 GPG 密钥：</p>
+<p>curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add -</p>
+<p>现在，通过运行以下命令更新 Debian 软件包列表并安装 Caddy：</p>
+<p>apt update<br>
+apt install caddy</p>
+<p>然后，运行以下命令来停止、启动和启用 Caddy 服务以始终在服务器启动时启动：</p>
+<p>systemctl stop caddy<br>
+systemctl start caddy<br>
+systemctl enable caddy</p>
+<p>使用以下命令验证 Caddy 安装：</p>
+<p>caddy version</p>
+<h2 id="步骤-3-在-caddy-上启用-php-支持">步骤 3. 在 Caddy 上启用 PHP 支持。</h2>
+<p>现在我们使用以下命令安装 PHP 和其他必要的扩展：</p>
+<p>apt install php-fpm php-mysql php-curl php-gd php-mbstring php-common php-xml php-xmlrpc</p>
+<p>接下来，编辑 PHP-FPM 配置文件并使用 caddy 更改默认用户和组：</p>
+<p>nano /etc/php/7.4/fpm/pool.d/www.conf</p>
+<p>查找和替换：</p>
+<p>user = caddy group = caddy<br>
+listen.owner = caddy<br>
+listen.group = caddy</p>
+<p>保存并关闭文件，然后重新启动 PHP-FPM 服务以应用更改：</p>
+<p>systemctl restart php7.4-fpm</p>
+<h2 id="步骤-4-创建虚拟主机-caddy">步骤 4. 创建虚拟主机 Caddy。</h2>
+<p>现在使用以下命令编辑文件：/etc/caddy/Caddyfile</p>
+<p>nano /etc/caddy/Caddyfile</p>
+<p>添加以下行：</p>
+<p>caddy.your-domain.com:80<br>
+{<br>
+root * /usr/share/caddy/<br>
+encode gzip zstd<br>
+php_fastcgi unix//run/php/php7.4-fpm.sock<br>
+}</p>
+<p>保存并关闭文件，然后重新启动 Caddy 服务以应用更改：</p>
+<p>systemctl restart caddy</p>
+<h2 id="步骤-5-访问-caddy-web-界面">步骤 5. 访问 Caddy Web 界面。</h2>
+<p>成功安装后，打开浏览器并搜索您的服务器 IP 或域名：</p>
+<p>http://caddy.your-domain.com</p>
+
+          </div>
+        </div>
+
+        
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">工作，生活和电脑</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://lost1984.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
