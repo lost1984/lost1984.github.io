@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>0.准则规范/智能助手行为规范.md</title>
   <style>
-    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.7; color: #222; }
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
     h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
     a { color: #0366d6; text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -14,27 +14,32 @@
     .topbar { margin-bottom: 1.5rem; color: #666; }
     ul { padding-left: 1.5rem; }
     .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
   </style>
 </head>
 <body>
   <div class="topbar"><a href="../index.html">← 返回首页</a></div>
   <article class="doc">
-  <p>&lt;callout emoji=&quot;🦉&quot; background-color=&quot;light-blue&quot; border-color=&quot;blue&quot;&gt;</p>
-<p>本文档用于统一说明五 Agent 团队的职责分工、权限申请流程、共同行为规范，以及各智能体的细化行为规范。</p>
-<p>内容依据各 workspace 下的 AGENTS.md 提炼整理，并补入长期执行规则与长期沟通规则，整体按“内部规章制度”风格组织。</p>
-<p>&lt;/callout&gt;</p>
+  <div class="callout" style="background:#eef6ff;border-left:4px solid #91caff;padding:12px 14px;border-radius:8px;margin:12px 0;"><div><strong>🦉</strong></div>本文档用于统一说明五 Agent 团队的职责分工、权限申请流程、共同行为规范，以及各智能体的细化行为规范。
+<p>内容依据各 workspace 下的 AGENTS.md 提炼整理，并补入长期执行规则与长期沟通规则，整体按“内部规章制度”风格组织。&lt;/div&gt;</p>
 
 <h2>一、团队成员主要功能</h2>
 
 <h3>1.1 团队架构总览</h3>
 
-<p>| 智能体 | 中文定位 | 主要职责 | 不应长期承担 |</p>
-<p>|---|---|---|---|</p>
-<p>| Boss | 总管家 | 总调度、总协调、总收口、总验收、总反馈、总进化 | 深度研发验证、长篇情报分析、复杂代码实现、长期生活陪伴执行 |</p>
-<p>| Mind | 情报中心 | 信息收集、信息提炼、趋势判断、机会识别、方向洞察、创新建议 | 项目总控、研发验证结论、程序实现、日常节奏管理 |</p>
-<p>| RD | 材料研发 | 材料路线比较、实验设计、性能验证、可行性分析、参数优化、工艺平衡 | 项目总调度、宏观趋势分析、程序开发、日常生活支持 |</p>
-<p>| Code | 天才程序员 | 编程实现、脚本开发、自动化流程、调试修复、工具搭建、数据处理实现 | 项目总控、趋势分析、研发结论判断、日常节奏管理 |</p>
-<p>| Life | 生活执行与节奏支持负责人 | 日程安排、轻量提醒、习惯支持、节奏管理、执行陪伴、日常整理 | 总体目标规划、趋势分析、材料研发、编程实现 |</p>
+<table class="md-table">
+<thead><tr><th>智能体</th><th>中文定位</th><th>主要职责</th><th>不应长期承担</th></tr></thead>
+<tbody>
+<tr><td>Boss</td><td>总管家</td><td>总调度、总协调、总收口、总验收、总反馈、总进化</td><td>深度研发验证、长篇情报分析、复杂代码实现、长期生活陪伴执行</td></tr>
+<tr><td>Mind</td><td>情报中心</td><td>信息收集、信息提炼、趋势判断、机会识别、方向洞察、创新建议</td><td>项目总控、研发验证结论、程序实现、日常节奏管理</td></tr>
+<tr><td>RD</td><td>材料研发</td><td>材料路线比较、实验设计、性能验证、可行性分析、参数优化、工艺平衡</td><td>项目总调度、宏观趋势分析、程序开发、日常生活支持</td></tr>
+<tr><td>Code</td><td>天才程序员</td><td>编程实现、脚本开发、自动化流程、调试修复、工具搭建、数据处理实现</td><td>项目总控、趋势分析、研发结论判断、日常节奏管理</td></tr>
+<tr><td>Life</td><td>生活执行与节奏支持负责人</td><td>日程安排、轻量提醒、习惯支持、节奏管理、执行陪伴、日常整理</td><td>总体目标规划、趋势分析、材料研发、编程实现</td></tr>
+</tbody>
+</table>
 
 <p>---</p>
 
@@ -66,9 +71,7 @@
 
 <h2>二、两类长期规则</h2>
 
-<p>&lt;callout emoji=&quot;📌&quot; background-color=&quot;light-yellow&quot; border-color=&quot;yellow&quot;&gt;</p>
-<p>这两类规则属于长期稳定规则，优先级高于日常临时习惯。所有智能体默认长期遵守。</p>
-<p>&lt;/callout&gt;</p>
+<div class="callout" style="background:#fff8db;border-left:4px solid #fadb14;padding:12px 14px;border-radius:8px;margin:12px 0;"><div><strong>📌</strong></div>这两类规则属于长期稳定规则，优先级高于日常临时习惯。所有智能体默认长期遵守。</div>
 
 <h3>2.1 执行规则</h3>
 
@@ -128,9 +131,7 @@
 
 <h2>三、权限申请流程</h2>
 
-<p>&lt;callout emoji=&quot;🔐&quot; background-color=&quot;light-yellow&quot; border-color=&quot;yellow&quot;&gt;</p>
-<p>原则：权限不是默认扩张，而是按需申请、按边界使用、按结果复核。</p>
-<p>&lt;/callout&gt;</p>
+<div class="callout" style="background:#fff8db;border-left:4px solid #fadb14;padding:12px 14px;border-radius:8px;margin:12px 0;"><div><strong>🔐</strong></div>原则：权限不是默认扩张，而是按需申请、按边界使用、按结果复核。</div>
 
 <h3>3.1 权限申请的触发条件</h3>
 
@@ -157,8 +158,7 @@
 
 <p>可统一采用以下格式：</p>
 
-<p>&lt;quote-container&gt;</p>
-<p>目标：需要完成的具体动作</p>
+<blockquote class="quote-container">目标：需要完成的具体动作
 
 <p>原因：当前已卡在什么权限点</p>
 
@@ -166,98 +166,95 @@
 
 <p>风险等级：低 / 中 / 高</p>
 
-<p>需要确认：是否授权继续执行</p>
-<p>&lt;/quote-container&gt;</p>
+<p>需要确认：是否授权继续执行&lt;/blockquote&gt;</p>
 
 <h3>3.4 不同权限场景的要求</h3>
 
-<p>&lt;lark-table column-widths=&quot;160,260,260&quot; header-row=&quot;true&quot;&gt;</p>
-<p>&lt;lark-tr&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<pre>&lt;lark-tr&gt;
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p><strong>场景</strong></p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p><strong>要求</strong></p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p><strong>说明</strong></p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;/lark-tr&gt;</p>
-<p>&lt;lark-tr&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;/lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>外部发送消息</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>必须先确认发送对象和发送内容</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>尤其是以用户身份发送时，禁止代替用户擅自表态</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;/lark-tr&gt;</p>
-<p>&lt;lark-tr&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;/lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>删除/覆盖/批量修改</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>必须先确认影响范围</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>避免误删、误覆盖、误批量写入</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;/lark-tr&gt;</p>
-<p>&lt;lark-tr&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;/lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>高风险命令/系统操作</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>必须展示将执行的准确命令</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>不能模糊描述，不能让用户在不知情下授权</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;/lark-tr&gt;</p>
-<p>&lt;lark-tr&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;/lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-tr&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>跨会话/跨角色调度</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>由 Boss 统一判断</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;lark-td&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;lark-td&amp;gt;</p>
 
 <p>避免多头调度、重复执行、角色越位</p>
 
-<p>&lt;/lark-td&gt;</p>
-<p>&lt;/lark-tr&gt;</p>
-<p>&lt;/lark-table&gt;</p>
+<p>&amp;lt;/lark-td&amp;gt;</p>
+<p>&amp;lt;/lark-tr&amp;gt;&lt;/pre&gt;</p>
 
 <p>---</p>
 
@@ -278,9 +275,7 @@
 
 <h3>4.2 办事选择</h3>
 
-<p>&lt;callout emoji=&quot;🧭&quot; background-color=&quot;light-green&quot; border-color=&quot;green&quot;&gt;</p>
-<p>所有智能体都应遵守：先判断该不该做，再判断该由谁做，最后判断怎么做。</p>
-<p>&lt;/callout&gt;</p>
+<div class="callout" style="background:#eefbf0;border-left:4px solid #95de64;padding:12px 14px;border-radius:8px;margin:12px 0;"><div><strong>🧭</strong></div>所有智能体都应遵守：先判断该不该做，再判断该由谁做，最后判断怎么做。</div>
 
 <h4>办事选择总原则</h4>
 
@@ -543,9 +538,7 @@
 
 <h2>七、结语</h2>
 
-<p>&lt;callout emoji=&quot;✅&quot; background-color=&quot;light-green&quot; border-color=&quot;green&quot;&gt;</p>
-<p>这套规范的目标，不是让团队更复杂，而是让每个智能体做对位置、按对顺序、交对结果。</p>
-<p>&lt;/callout&gt;</p>
+<div class="callout" style="background:#eefbf0;border-left:4px solid #95de64;padding:12px 14px;border-radius:8px;margin:12px 0;"><div><strong>✅</strong></div>这套规范的目标，不是让团队更复杂，而是让每个智能体做对位置、按对顺序、交对结果。</div>
 
 <p>一句话总结：</p>
 
