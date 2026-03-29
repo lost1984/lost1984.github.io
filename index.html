@@ -23,10 +23,32 @@
     .hero h1 { margin: 0 0 8px; font-size: 2rem; line-height: 1.2; }
     .hero p { margin: 0; opacity: 0.92; }
     .meta { margin-top: 10px; font-size: 0.92rem; opacity: 0.9; }
-    .agent-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.24); backdrop-filter: blur(8px); }
+    .agent-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.24); backdrop-filter: blur(8px); flex-shrink: 0; }
     .agent-avatar { width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,.2); font-size: 20px; }
     .agent-text { font-size: .92rem; line-height: 1.2; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 24px; }
+     .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 14px; box-shadow: var(--shadow); }
+    .card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; }
+    .card-links { list-style: none; margin: 0; padding: 0; }
+    .card-links li { margin: 8px 0; }
+    .card-links a { display: block; text-decoration: none; color: var(--text); background: #fafbfc; border: 1px solid #eef1f4; border-radius: 12px; padding: 10px 12px; transition: all .15s ease; }
+    .card-links a:hover { border-color: #cfe0ff; background: var(--brand-soft); color: var(--brand); transform: translateY(-1px); }
+    .empty { color: var(--muted); padding: 10px 0; }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 0.92rem; }
+    @media (max-width: 720px) {
+      .wrap { padding: 16px 12px 36px; }
+      .hero { padding: 18px 16px; border-radius: 16px; }
+      .hero-head { flex-direction: column; align-items: flex-start; }
+      .hero h1 { font-size: 1.55rem; }
+      .hero p { font-size: 0.95rem; }
+      .meta { font-size: 0.84rem; }
+      .agent-badge { width: 100%; justify-content: flex-start; border-radius: 14px; }
+      .grid { grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+      .card { padding: 14px 14px 10px; border-radius: 14px; }
+      .card-title { font-size: 1rem; margin-bottom: 10px; }
+      .card-links li { margin: 6px 0; }
+      .card-links a { padding: 10px; border-radius: 10px; font-size: 0.95rem; }
+    }
     .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 14px; box-shadow: var(--shadow); }
     .card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; }
     .card-links { list-style: none; margin: 0; padding: 0; }
@@ -44,7 +66,7 @@
         <div>
           <h1>YT的小龙虾工作台</h1>
           <p>轻量静态站 · 由智能助手 Code 维护</p>
-          <div class="meta">最近生成：2026-03-30 01:23:04</div>
+          <div class="meta">最近生成：2026-03-30 01:24:16</div>
         </div>
         <div class="agent-badge">
           <div class="agent-avatar">🐭</div>
