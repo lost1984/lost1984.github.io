@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1.项目文档/2026-03-30-linuxdo-授权公益站查询与签到任务.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div>
+  <article class="doc">
+  <h1>2026-03-30 linux.do 授权公益站查询与签到任务</h1>
+
+<h2>任务主题</h2>
+<p>linux.do 授权公益站，查询</p>
+
+<h2>任务目标</h2>
+<ol>
+<li>拿到授权关联的所有公益站的 API 调用信息和密钥。</li>
+</ol>
+<ul>
+<li>数据来源：当前授权列表页面（可能有重复）</li>
+<li>页面：&lt;https://connect.linux.do/oauth2/log&gt;</li>
+</ul>
+<ol>
+<li>通过 API 和密钥，查询各公益站的模型列表与可用状态。</li>
+<li>如果公益站有签到功能，尝试编写签到脚本。</li>
+</ol>
+
+<h2>当前理解</h2>
+<ul>
+<li>这是一个调查 + 自动化实现任务。</li>
+<li>优先产出：</li>
+</ul>
+<ol>
+<li>授权站点清单</li>
+<li>每个站点的 API / Key / 模型状态调查结果</li>
+<li>可行时给出签到脚本 MVP</li>
+</ol>
+
+<h2>建议执行顺序</h2>
+<ol>
+<li>登录并读取授权日志页面</li>
+<li>提取并去重公益站列表</li>
+<li>逐站分析 API 接入方式与密钥获取方式</li>
+<li>验证模型列表查询接口和可用性</li>
+<li>识别是否存在签到入口/接口</li>
+<li>为可签到站点编写脚本</li>
+</ol>
+
+<h2>风险与限制</h2>
+<ul>
+<li>可能需要登录态</li>
+<li>部分站点可能没有公开 API 文档</li>
+<li>部分密钥可能无法从授权页直接获取</li>
+<li>签到逻辑可能依赖前端签名、CSRF 或人机校验</li>
+</ul>
+
+<h2>交付预期</h2>
+<ul>
+<li>一份整理后的调查结论</li>
+<li>可运行的查询脚本 / 签到脚本（MVP 优先）</li>
+</ul>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div></div>
+</body>
+</html>
