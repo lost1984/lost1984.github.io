@@ -78,6 +78,32 @@
 <li>一份整理后的调查结论</li>
 <li>可运行的查询脚本 / 签到脚本（MVP 优先）</li>
 </ul>
+
+<h2>2026-03-30 进展更新（A：修复 ice_signin 浏览器自适应）</h2>
+<ul>
+<li>已对 <code>/root/.openclaw/workspace-code/ice_signin.py</code> 完成一轮硬化：</li>
+<li>增加 CDP 端口自动探测（9223/9222/9224/9333/9444）</li>
+<li>支持在未提供 <code>--cdp-url</code> 时自动尝试可用端口</li>
+<li>在端口不可用时自动拉起 Chrome</li>
+<li>补齐 root/headless 环境所需启动参数：</li>
+<li><code>--no-sandbox</code></li>
+<li><code>--disable-dev-shm-usage</code></li>
+<li><code>--headless=new</code></li>
+<li><code>--remote-allow-origins=*</code></li>
+<li>连接 CDP websocket 时不再写死 9223 origin</li>
+<li>在发现旧调试端口占用时，尝试先清理同端口旧 Chrome 进程</li>
+<li>当无法进入 <code>signv.ice.v.ua</code> iframe 时，返回明确诊断信息，而不是仅抛异常</li>
+<li>本机最新验证结果：</li>
+<li>浏览器/CDP 已可自动拉起</li>
+<li>当前失败点已收敛为“缺少登录态”，而不是浏览器启动失败</li>
+<li>实际返回：</li>
+<li><code>cdp_url</code>: <code>http://127.0.0.1:9223</code></li>
+<li><code>page_url</code>: <code>https://ice.v.ua/login?redirect=/custom/f8c961a6027f9cb0</code></li>
+<li>结论：当前 profile 未登录 <code>ice.v.ua</code>，所以无法进入签到 iframe</li>
+<li>当前 A 的状态：</li>
+<li><strong>已完成核心自适应修复</strong></li>
+<li>剩余前置条件：需要在该浏览器 profile 中先登录一次 <code>ice.v.ua</code></li>
+</ul>
   </article>
   <div class="bottom-nav"><div class="topbar"><a href="../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div></div>
 </body>
