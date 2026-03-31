@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9.临时文件/workspace-task/memory/2026-03-29.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div>
+  <article class="doc">
+  <h2>2026-03-29 持久记忆补充</h2>
+
+<h3>Agent 监督规则（新增固化）</h3>
+<ul>
+<li>对 Code 的监督口径固定为 4 项：</li>
+</ul>
+<ol>
+<li>新 commit</li>
+<li>补完后的文件路径</li>
+<li>可直接执行的命令</li>
+<li>还没打通的点</li>
+</ol>
+<ul>
+<li>对 Code 的硬判定规则：</li>
+<li>有新 commit = 这轮真实往前</li>
+<li>没新 commit = 这轮没真正往前</li>
+<li>对卡在授权 / 权限 / 外部确认的 agent，不允许闷等；必须主动申请，并说清：</li>
+<li>要老板做什么</li>
+<li>为什么必须老板做</li>
+<li>做完后能立刻闭环什么</li>
+<li>巡查时要额外检查：未完成事项是否已经主动申请所需授权；如果没有，则该轮监督不合格。</li>
+</ul>
+
+<h3>本轮监督结论</h3>
+<ul>
+<li>Code：最新看到新增 commit <code>0666ab6</code>，描述 <code>Enhance ice sign-in with config and auto mode</code>，因此判定“这轮真实往前”；但仍未闭环，卡在真实主站 token / 登录态与完全自动登录闭环。</li>
+<li>Code 当前相关文件：</li>
+<li><code>/root/.openclaw/workspace-code/ice_signin.py</code></li>
+<li><code>/root/.openclaw/workspace-code/ice_signin.example.json</code></li>
+<li>News：未完成“晚间日报 2026年03月28日 + AI 驱动创新索引追加”这单，且最新巡查中表现为等待新输入，没有继续主动闭环，也没有按规则主动申请缺失条件，因此本轮判定为“未完且等待，监督不合格，应催办”。</li>
+</ul>
+
+<h3>用户偏好 / 工作方式</h3>
+<ul>
+<li>用户要的是持续监督其他 agent，重点区分“在干活”与“在等待/卡住”。</li>
+<li>用户不接受模糊进展汇报，尤其对 Code 只认硬结果；对 News 不接受“继续处理”空话。</li>
+<li>当前环境无法在 Feishu 中真实后台定时自动巡检，只能在用户消息触发时执行巡查；不能对用户假承诺自动轮询。</li>
+</ul>
+
+<h2>今日关键监督结论（15:43-17:21）</h2>
+
+<h3>Code 当前判定</h3>
+<ul>
+<li>新 commit：<code>0666ab6</code>（<code>Enhance ice sign-in with config and auto mode</code>）</li>
+<li>但此后<strong>没有更新的 commit</strong></li>
+<li>按硬规则：无新 commit = 这轮没往前</li>
+<li>当前相关文件：</li>
+<li><code>/root/.openclaw/workspace-code/ice_signin.py</code></li>
+<li><code>/root/.openclaw/workspace-code/ice_signin.example.json</code></li>
+<li>卡点仍是：真实主站 token / 登录态 / 完全自动登录闭环</li>
+<li>验收标准（固化）：</li>
+</ul>
+<ol>
+<li>新 commit</li>
+<li>补完后的文件路径</li>
+<li>可直接执行的命令</li>
+<li>还没打通的点</li>
+</ol>
+
+<h3>News 当前判定</h3>
+<ul>
+<li>未完成《晚间日报 2026年03月28日》飞书文档创建</li>
+<li>未完成《AI 驱动创新》索引追加</li>
+<li>基本处于停住状态</li>
+<li>监督结论：<strong>不合格</strong></li>
+<li>后续催办方向：</li>
+</ul>
+<ol>
+<li>晚报文档到底建没建成</li>
+<li>索引到底追加没追加</li>
+<li>如果没完成，缺什么，不允许空等</li>
+</ol>
+
+<h3>Life 侧已确认能力</h3>
+<ul>
+<li><strong>可以创建飞书文档</strong>（feishu-create-doc skill 可用）</li>
+<li>如果用户直接说&quot;直接创建晚报&quot;，可立即执行</li>
+<li>当前唯一需要确认的信息：创建位置（默认个人空间根目录）</li>
+</ul>
+
+<h3>监督规则（固化）</h3>
+<ul>
+<li>Code：无新 commit = 这轮没往前</li>
+<li>News：不允许&quot;继续处理&quot;空话，必须给明确状态或兜底交付</li>
+<li>所有卡授权的对象：必须主动申请，不允许闷等</li>
+<li>本轮巡查结论：Code 和 News 均未完成，均需催办</li>
+</ul>
+
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div></div>
+</body>
+</html>

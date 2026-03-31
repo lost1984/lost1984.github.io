@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9.临时文件/workspace-rd/skills/web-research-skill/SKILL.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div>
+  <article class="doc">
+  <hr>
+<p>name: battery-industry-research</p>
+<p>description: |</p>
+<p>电池与科技情报调研 Skill。用于跟踪锂电池行业动向、头部厂家重要技术变化与产品发布，</p>
+<p>调研锂电池聚合物相关方向（binder、添加剂、分散剂、功能零部件）的重要突破，</p>
+<p>搜索军工、医疗、航空航天等其他行业可迁移到电池行业的关键技术，</p>
+<p>同时汇总科技类、国内重大新闻、国际重大新闻。</p>
+<p>触发条件：用户提到“行业动向”“技术跟踪”“电池调研”“锂电调研”“聚合物进展”“binder 进展”“添加剂突破”“分散剂突破”“跨行业技术迁移”“科技新闻”“国内重大新闻”“国际重大新闻”“日报”“周报”“情报汇总”。</p>
+<p>输出偏好：先结论，再分主题整理关键信息、变化点、潜在影响、风险点和建议跟踪项。</p>
+<hr>
+
+<h1>电池与科技情报调研</h1>
+
+<p>围绕电池行业、聚合物材料、跨行业技术迁移以及重大科技/时事信息，执行结构化网络检索、筛选、交叉验证与结论整理。</p>
+
+<h2>使用场景</h2>
+
+<p>适用：</p>
+<ul>
+<li>跟踪锂电池行业动向</li>
+<li>跟踪头部厂家重要技术变化、产品发布、产能布局、客户导向</li>
+<li>调研锂电池聚合物方向的重要突破：binder、添加剂、分散剂、功能零部件</li>
+<li>搜索军工、医疗、航空航天等行业的重要技术，并判断其是否有迁移到电池行业的潜力</li>
+<li>汇总科技类、国内重大新闻、国际重大新闻</li>
+<li>生成日报、周报、专题情报简报</li>
+</ul>
+
+<p>不适用：</p>
+<ul>
+<li>纯本地文件编辑、代码修复、环境排障</li>
+<li>需要登录某个特定网站后台才能获取的数据，且当前没有对应权限</li>
+<li>需要实验数据才能下最终技术结论的问题</li>
+</ul>
+
+<h2>工作原则</h2>
+
+<ul>
+<li>先澄清调研对象和问题边界；若用户表述已足够明确，则直接开始</li>
+<li>优先找一手来源：官网、论文、专利、标准、财报、官方公告</li>
+<li>再补二手来源：媒体、行业博客、研报、论坛</li>
+<li>对关键结论至少进行两类来源交叉验证</li>
+<li>明确区分：事实、推断、观点</li>
+<li>不把网络信息直接当作最终研发结论；涉及技术可行性时，必须指出验证路径或缺失证据</li>
+</ul>
+
+<h2>执行流程</h2>
+
+<h3>1. 定义问题</h3>
+
+<p>先识别以下四项：</p>
+<ul>
+<li>调研主题是什么</li>
+<li>用户最想回答的问题是什么</li>
+<li>时间范围是什么（最新 / 近一年 / 不限）</li>
+<li>输出要偏：快报、详细对比、判断建议，还是可直接转发成稿</li>
+</ul>
+
+<p>如果用户没有说全，但主题已经明确，可先按“先做一轮初步调研，再提示可继续深挖”的方式执行，避免过度打断。</p>
+
+<h3>2. 制定检索面</h3>
+
+<p>如果用户没有指定更窄的题目，默认按以下 6 个方向展开：</p>
+
+<ol>
+<li>锂电池行业动向</li>
+</ol>
+<ul>
+<li>头部厂家（如 CATL、BYD、EVE、国轩、欣旺达、LG、Panasonic、Samsung SDI、Tesla、Northvolt 等）的技术、产品、产能、客户、供应链变化</li>
+</ul>
+<ol>
+<li>锂电池聚合物相关突破</li>
+</ol>
+<ul>
+<li>binder、导电/功能添加剂、分散剂、涂层材料、隔膜/集流体/功能零部件</li>
+</ul>
+<ol>
+<li>跨行业可迁移技术</li>
+</ol>
+<ul>
+<li>军工、医疗、航空航天、半导体、精密制造等领域可能迁移到电池行业的材料、结构、工艺、检测、封装技术</li>
+</ul>
+<ol>
+<li>科技类重要动态</li>
+</ol>
+<ul>
+<li>AI、机器人、新材料、先进制造、能源科技、电子信息</li>
+</ul>
+<ol>
+<li>国内重大新闻</li>
+<li>国际重大新闻</li>
+</ol>
+
+<p>若用户只关心其中一部分，则收缩到相关子主题，避免信息过载。</p>
+
+<p>必要时同时搜索中英文关键词，提升覆盖率。</p>
+
+<h3>3. 检索与初筛</h3>
+
+<p>优先使用 web_search 做广搜。</p>
+
+<p>建议组合：</p>
+<ul>
+<li>中文关键词 6-12 组，覆盖上述 6 个方向</li>
+<li>英文关键词 4-8 组，重点覆盖国际厂商、英文技术术语、跨行业技术</li>
+<li>针对官网/论文/专利可加限定词：official / paper / patent / arxiv / site:</li>
+</ul>
+
+<p>建议优先关注来源：</p>
+<ul>
+<li>公司官网、新闻稿、产品发布页、财报、投资者关系页面</li>
+<li>权威媒体与行业媒体</li>
+<li>论文、专利、会议资料、标准资料</li>
+<li>政府与国际组织公开信息</li>
+</ul>
+
+<p>筛选规则：</p>
+<ul>
+<li>优先保留高相关、高可信来源</li>
+<li>去掉重复链接和明显搬运内容</li>
+<li>对强结论、关键数据、发布时间敏感信息，继续打开原文核对</li>
+<li>对“重大突破”“颠覆性”“首发”这类说法，默认做二次验证</li>
+</ul>
+
+<h3>4. 打开原文核实</h3>
+
+<p>对以下内容使用 web_fetch 读取原文：</p>
+<ul>
+<li>核心定义</li>
+<li>关键数据</li>
+<li>公司/机构官方说法</li>
+<li>论文摘要或技术方案描述</li>
+<li>容易被误传的观点</li>
+</ul>
+
+<p>如果来源之间冲突，明确标出：</p>
+<ul>
+<li>哪些说法一致</li>
+<li>哪些说法冲突</li>
+<li>当前更可信的是哪一类来源，为什么</li>
+</ul>
+
+<h3>5. 输出整理</h3>
+
+<p>如果用户要求的是综合情报/日报/周报，默认按以下结构输出：</p>
+
+<ol>
+<li>总体结论</li>
+<li>锂电行业动向</li>
+<li>聚合物相关突破</li>
+<li>跨行业可迁移技术</li>
+<li>科技类重要动态</li>
+<li>国内重大新闻</li>
+<li>国际重大新闻</li>
+<li>值得继续跟踪的主题</li>
+<li>参考来源</li>
+</ol>
+
+<p>其中每个栏目尽量包含：</p>
+<ul>
+<li>发生了什么</li>
+<li>为什么重要</li>
+<li>对电池行业可能意味着什么</li>
+</ul>
+
+<p>如果任务偏研发/技术路线，可改用：</p>
+
+<ol>
+<li>目标</li>
+<li>当前公开信息显示的主流路线</li>
+<li>关键变量</li>
+<li>风险点</li>
+<li>现阶段判断</li>
+<li>建议验证路径</li>
+</ol>
+
+<h2>输出要求</h2>
+
+<ul>
+<li>先给结论，不先堆资料</li>
+<li>结论要区分“能确认”和“暂时只能推测”</li>
+<li>引用来源时尽量带来源名称或链接域名</li>
+<li>不编造网页内容；信息不足就直接说不足</li>
+<li>涉及时效性内容，要注明“基于当前检索结果”</li>
+</ul>
+
+<h2>常用输出模板</h2>
+
+<h3>模板 A：情报快报</h3>
+
+<ul>
+<li>总体结论：</li>
+<li>锂电行业动向：</li>
+<li>聚合物相关突破：</li>
+<li>跨行业可迁移技术：</li>
+<li>科技类重要动态：</li>
+<li>国内重大新闻：</li>
+<li>国际重大新闻：</li>
+<li>值得继续跟踪：</li>
+</ul>
+
+<h3>模板 B：路线/公司跟踪</h3>
+
+<ul>
+<li>跟踪对象：</li>
+<li>最新变化：</li>
+<li>与过去相比的关键变化点：</li>
+<li>可能影响：</li>
+<li>风险/不确定点：</li>
+<li>当前判断：</li>
+<li>建议继续跟踪的信号：</li>
+</ul>
+
+<h3>模板 C：研发视角调研</h3>
+
+<ul>
+<li>目标：</li>
+<li>假设：</li>
+<li>关键变量：</li>
+<li>公开信息支持度：</li>
+<li>风险点：</li>
+<li>验证方法：</li>
+<li>下一步建议：</li>
+</ul>
+
+<h2>注意事项</h2>
+
+<ul>
+<li>若用户只说“调研一下”，优先做第一轮可交付版本，不要一开始就连环追问</li>
+<li>若调研对象可能涉及商业敏感、真实性存疑、市场宣传夸大，要主动做交叉验证</li>
+<li>若用户贴了文章/链接，让该材料作为起点，但不要只信单一来源</li>
+<li>若问题明显需要更专业的专项技能（如 arXiv 搜索、天气、飞书文档），应优先使用更具体的 Skill</li>
+</ul>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a></div></div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9.临时文件/workspace-code/memory/2026-03-28.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="2026-03-29.html">2026-03-29 →</a></div>
+  <article class="doc">
+  <h2>2026-03-28 20:37 CST — Douyu recorder timestamp overlay and naming work</h2>
+<ul>
+<li>Extended <code>douyu_recorder.py</code> into a product-style pipeline: <code>先录 MKV -&gt; 再转 H.264 -&gt; 右下角时间戳 -&gt; 默认删原始 MKV</code>.</li>
+<li>New filename convention implemented in <code>/root/.openclaw/workspace-code/douyu_recorder.py</code>: <code>房间名称 + 当前日期 + 开始时间 + 编码</code>, with examples such as <code>养成系热舞御姐_2026-03-28_202637_source.mkv</code> and <code>养成系热舞御姐_2026-03-28_202637_h264_ts.mp4</code>.</li>
+<li>Real 1-minute sample was produced under <code>/root/.openclaw/workspace-code/test_recordings/demo/</code> using room <code>https://www.douyu.com/6295904</code>; room name parsed as <code>养成系热舞御姐</code>.</li>
+<li>Sample output paths:</li>
+<li><code>/root/.openclaw/workspace-code/test_recordings/demo/养成系热舞御姐_2026-03-28_202637_x264_ts.mkv</code></li>
+<li><code>/root/.openclaw/workspace-code/test_recordings/demo/养成系热舞御姐_2026-03-28_202637_x264_ts.mp4</code></li>
+<li>Measured sample transcode metrics for <code>先录 MKV -&gt; 转 H.264 -&gt; 叠时间戳</code> on a 60-second clip:</li>
+<li>output duration <code>60.010998</code></li>
+<li>output size <code>5799509</code> bytes (~5.8 MB)</li>
+<li>output bitrate <code>773126</code></li>
+<li>average CPU <code>396.66%</code></li>
+<li>peak CPU <code>418.0%</code></li>
+<li>peak RSS <code>535.0 MB</code></li>
+<li>elapsed <code>42</code> seconds</li>
+<li>The first timestamp overlay implementation used ffmpeg <code>timecode</code> and only displayed <code>HH:MM:SS</code>; user explicitly rejected this and required <code>【年-月-日 HH:MM:SS】</code> in the lower-right corner.</li>
+<li><code>douyu_recorder.py</code> was then edited again to move away from <code>timecode</code> and toward a full datetime overlay using <code>drawtext + textfile + reload=1</code>, with helper <code>probe_duration_seconds()</code> added so a sidecar updater process can keep writing <code>%Y-%m-%d %H:%M:%S</code> into a temporary <code>.timestamp.txt</code> file during transcode.</li>
+<li>At compaction time, this full-datetime timestamp route had been coded into <code>/root/.openclaw/workspace-code/douyu_recorder.py</code>, but had NOT yet been validated with a fresh short sample after the change.</li>
+<li>Git commits created during this phase:</li>
+<li>previous commit already existed: <code>Fix Douyu plugin loading and page parsing</code></li>
+<li>new commit: <code>3ae91bb</code> / <code>Add MKV-to-H264 recording pipeline with timestamp overlay</code></li>
+<li>Important state note: commit <code>3ae91bb</code> predates the later full-datetime overlay edits, so the working tree contains uncommitted changes after that commit.</li>
+</ul>
+
+<h2>2026-03-28 22:35 CST — Douyu Minana recorder pivot + visual-trigger MVP</h2>
+
+<ul>
+<li>User decided to stop pursuing broad Douyu hot-room compatibility and instead focus only on Minana&#x27;s room for stable recording.</li>
+<li>Minana room details confirmed from <code>https://www.douyu.com/22619?dyshid=b72aa56-5348593090ef60b8c8bb643700021701</code>:</li>
+<li>visible/short room entry: <code>22619</code></li>
+<li>parsed <code>room_id</code>: <code>5551871</code></li>
+<li>parsed <code>vipId</code>: <code>22619</code></li>
+<li>parsed <code>owner_name</code>: <code>Minana呀</code></li>
+<li><code>douyu_recorder.py</code> naming logic was changed from room-title-based naming to anchor-name-based naming:</li>
+<li>now uses <code>主播名称 + 时间 + 编码</code></li>
+<li>example outputs: <code>Minana呀_2026-03-28_215519_source.mkv</code>, <code>Minana呀_2026-03-28_215519_h264_ts.mp4</code></li>
+<li>Hot-room soak test summary from <code>/root/.openclaw/workspace-code/test_recordings/hotroom_soak/summary.jsonl</code>:</li>
+<li>total attempts: <code>49</code></li>
+<li>success: <code>5</code></li>
+<li>failure: <code>44</code></li>
+<li>dominant failure: <code>执行失败: 无法从页面解析 room_id</code></li>
+<li>one notable transcode failure on room <code>793400</code> (<code>DL丶拖米</code>): <code>ffmpeg 转码失败，退出码 -7</code></li>
+<li>conclusion: full-site compatibility is not stable enough; HTML regex room parsing is the main weak point.</li>
+<li>Scheduled recording attempt using <code>/root/.openclaw/workspace-code/run_minana_schedule.sh</code> failed immediately at 22:00 with:</li>
+<li><code>[2026-03-28 22:00:00] 执行失败: 缺少依赖命令: streamlink</code></li>
+<li>reason: scheduled shell PATH did not expose <code>streamlink</code>, though interactive runs had <code>/root/.local/bin/streamlink</code></li>
+<li>hardening need: recorder should support explicit streamlink path or fallback to <code>/root/.local/bin/streamlink</code></li>
+<li>A 5-minute Minana probe recording was started via background session <code>mild-daisy</code> into <code>/root/.openclaw/workspace-code/test_recordings/minana_live_probe</code>; resulting process exited with code <code>12</code> during/after transcode, indicating the overlay/transcode path still needs hardening.</li>
+<li>User requirement changed from time-based recording to visual-triggered recording:</li>
+<li>TODO: detect whether the live frame contains <code>三块相似主体区域</code> or <code>两块相似主体区域</code></li>
+<li>start recording only after such a pattern appears, instead of relying on schedule.</li>
+<li>Built a first MVP detector script:</li>
+<li>file: <code>/root/.openclaw/workspace-code/minana_mirror_detector.py</code></li>
+<li>purpose: Minana-specific visual trigger detector for <code>2/3</code> similar subject regions</li>
+<li>dependencies: installed <code>pillow</code> via <code>python3 -m pip install --break-system-packages pillow</code></li>
+<li>current implementation: <code>streamlink</code> gets real stream URL, <code>ffmpeg</code> captures one frame, Pillow-based region similarity scan estimates whether there are 2 or 3 repeated subject regions.</li>
+<li>Initial live test of <code>minana_mirror_detector.py</code> succeeded and returned a positive match on the current frame:</li>
+<li><code>{&#x27;pair_score&#x27;: 0.9941, &#x27;pair_boxes&#x27;: ((853, 217, 1706, 831), (1706, 217, 2559, 831)), &#x27;triplet_score&#x27;: 0.9917, &#x27;triplet_boxes&#x27;: ((0, 217, 853, 831), (853, 217, 1706, 831), (1706, 217, 2559, 831)), &#x27;matched&#x27;: True}</code></li>
+<li>saved test frame path: <code>/root/.openclaw/workspace-code/test_recordings/minana_detector_frame.jpg</code></li>
+<li>Learning logs created under <code>/root/.openclaw/workspace-code/.learnings/</code>:</li>
+<li><code>ERRORS.md</code> records the scheduled <code>streamlink</code> PATH failure and the Minana probe transcode failure</li>
+<li><code>FEATURE_REQUESTS.md</code> records the new visual-trigger recording requirement.</li>
+<li>Next best engineering step after compaction:</li>
+</ul>
+<ol>
+<li>harden <code>douyu_recorder.py</code> to explicitly use <code>/root/.local/bin/streamlink</code> when available</li>
+<li>inspect/fix the Minana probe transcode failure</li>
+<li>connect <code>minana_mirror_detector.py</code> to <code>douyu_recorder.py</code> so <code>matched=True</code> can automatically trigger recording</li>
+<li>continue treating Minana as the only supported target instead of chasing full-site compatibility.</li>
+</ol>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="2026-03-29.html">2026-03-29 →</a></div></div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9.临时文件/workspace-news/MEMORY.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="IDENTITY.html">← IDENTITY</a> <span class="sep">·</span> <a href="SOUL.html">SOUL →</a></div>
+  <article class="doc">
+  <h1>MEMORY.md - News 关键行为规范（硬规则）</h1>
+
+<h2>本文件目的</h2>
+<p>固化一条最高优先级行为规则，违反即视为不合格。</p>
+
+<hr>
+
+<h2>铁律：不得在 skill 存在时声称&quot;没有能力&quot;</h2>
+
+<h3>规则正文</h3>
+
+<p><strong>当你被要求完成一项任务时，如果该任务属于以下领域，你必须首先检查对应 skill 文件是否存在：</strong></p>
+
+<ul>
+<li>飞书文档创建 → <code>~/.openclaw/extensions/openclaw-lark/skills/feishu-create-doc/SKILL.md</code></li>
+<li>飞书文档读取 → <code>~/.openclaw/extensions/openclaw-lark/skills/feishu-fetch-doc/SKILL.md</code></li>
+<li>飞书日历 → <code>~/.openclaw/extensions/openclaw-lark/skills/feishu-calendar/SKILL.md</code></li>
+<li>飞书任务 → <code>~/.openclaw/extensions/openclaw-lark/skills/feishu-task/SKILL.md</code></li>
+<li>飞书多维表格 → <code>~/.openclaw/extensions/openclaw-lark/skills/feishu-bitable/SKILL.md</code></li>
+<li>飞书 IM 消息 → <code>~/.openclaw/extensions/openclaw-lark/skills/feishu-im-read/SKILL.md</code></li>
+<li>其他飞书相关能力 → 先查 <code>~/.openclaw/extensions/openclaw-lark/skills/</code> 目录</li>
+</ul>
+
+<h3>违反处理</h3>
+
+<p><strong>如果 skill 文件存在，你必须：</strong></p>
+<ol>
+<li>立即读取该 SKILL.md</li>
+<li>按照说明调用对应工具</li>
+<li>不得停顿、不得询问&quot;有没有别的 agent 可以做&quot;、不得反复说&quot;我没有这个能力&quot;</li>
+</ol>
+
+<p><strong>如果 skill 文件不存在，你才能：</strong></p>
+<ol>
+<li>明确说明缺少什么能力</li>
+<li>说明需要什么外部条件</li>
+<li>给出兜底方案</li>
+</ol>
+
+<h3>违规示例（禁止出现）</h3>
+
+<p>❌ &quot;我现在缺少&#x27;创建飞书文档&#x27;这一步对应的直连工具入口&quot;</p>
+<p>❌ &quot;我这边没有可直接调用的文档创建 API&quot;</p>
+<p>❌ &quot;我去问下其他的 agent 有这个功能吗&quot;</p>
+<p>✅ &quot;feishu-create-doc skill 存在，我立即调用&quot;</p>
+
+<hr>
+
+<h2>当前已确认可用的 skill</h2>
+
+<table class="md-table">
+<thead><tr><th>任务</th><th>skill 文件</th></tr></thead>
+<tbody>
+<tr><td>创建飞书文档</td><td><code>~/.openclaw/extensions/openclaw-lark/skills/feishu-create-doc/SKILL.md</code></td></tr>
+<tr><td>读取飞书文档</td><td><code>~/.openclaw/extensions/openclaw-lark/skills/feishu-fetch-doc/SKILL.md</code></td></tr>
+<tr><td>飞书日历管理</td><td><code>~/.openclaw/extensions/openclaw-lark/skills/feishu-calendar/SKILL.md</code></td></tr>
+<tr><td>飞书任务管理</td><td><code>~/.openclaw/extensions/openclaw-lark/skills/feishu-task/SKILL.md</code></td></tr>
+<tr><td>飞书多维表格</td><td><code>~/.openclaw/extensions/openclaw-lark/skills/feishu-bitable/SKILL.md</code></td></tr>
+<tr><td>飞书消息读取</td><td><code>~/.openclaw/extensions/openclaw-lark/skills/feishu-im-read/SKILL.md</code></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>附：News 身份说明</h2>
+
+<p>本 workspace 名称为 &quot;News&quot;，定位是<strong>情报中心</strong>（与 Mind 同类），负责信息收集、趋势判断与机会识别。</p>
+
+<p>News 与 Mind 的区别：News 更偏向新闻/日报执行，Mind 更偏向深度情报分析。两者可协同，News 负责日常新闻输出，Mind 负责深度判断。</p>
+
+<p>News 的核心职责是<strong>按时、保质输出信息洞察</strong>，工具调用是手段而非目的。</p>
+
+<hr>
+
+<h2>违规记录</h2>
+
+<h3>2026-03-29 严重违规</h3>
+<p><strong>违规者</strong>：News agent（workspace-news）</p>
+<p><strong>事件</strong>：被要求创建《晚间日报 2026年03月28日》飞书文档时，在 feishu-create-doc SKILL.md 明确存在的情况下，反复声称&quot;缺少创建入口&quot;、&quot;没有直连 API&quot;、&quot;问别的 agent 能不能做&quot;。</p>
+<p><strong>定性</strong>：严重违反本 MEMORY.md 铁律，属不合格行为。</p>
+<p><strong>要求</strong>：本规则已更新，之后必须遵守。</p>
+
+<hr>
+
+<h2>新增长期规则：工作目录与文件落位</h2>
+
+<h3>规则正文</h3>
+
+<ul>
+<li>后续工作目录按老板新要求执行：需要产出的文件、过程文件、临时文件，统一按类别放入 <code>/root/ai/</code> 下已有对应子文件夹。</li>
+<li>不再随意把这类文件散落到其他目录。</li>
+<li>如果现有子文件夹不满足需求，需要新增文件夹，必须先向老板申请批准，再创建。</li>
+<li>未获批准，不得擅自扩展 <code>/root/ai/</code> 目录结构。</li>
+</ul>
+
+<h3>执行要求</h3>
+
+<ol>
+<li>先使用老板已创建的子文件夹分类放置文件。</li>
+<li>如目录不匹配，先汇报用途与拟新增文件夹名称，待批准后再创建。</li>
+<li>长期默认遵守此目录规则，视为永久记忆。</li>
+</ol>
+
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="IDENTITY.html">← IDENTITY</a> <span class="sep">·</span> <a href="SOUL.html">SOUL →</a></div></div>
+</body>
+</html>
