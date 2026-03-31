@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "9f503316-2b14-498a-8375-35c2b1daaeb9",
+      "agentId": "news",
+      "sessionKey": "agent:news:feishu:direct:ou_6bea425c89667718b413a80db1ca3316",
+      "name": "news-daily-briefing-am",
+      "enabled": true,
+      "createdAtMs": 1774539941804,
+      "updatedAtMs": 1774802530625,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "按默认固定工作规则生成今日早报：1）先写本地完整稿；2）必须包含“国内重大新闻”“国际重大新闻”独立栏目；3）产业判断要有，但不能替代综合新闻栏目；4）先把内容写对、写全，再考虑其他分发动作；5）飞书文档现阶段不作为必需交付项。默认输出到 /root/ai/2.情报跟踪/ ，并按日报技能流程执行。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "accountId": "news"
+      },
+      "state": {
+        "nextRunAtMs": 1774830600000,
+        "lastRunAtMs": 1774744200004,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 177618,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "3026a386-3721-4055-aadd-b90bf2c33a6c",
+      "agentId": "news",
+      "sessionKey": "agent:news:feishu:direct:ou_6bea425c89667718b413a80db1ca3316",
+      "name": "news-daily-briefing-pm",
+      "enabled": true,
+      "createdAtMs": 1774539965847,
+      "updatedAtMs": 1774802523396,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 23 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "按默认固定工作规则生成今日晚报：1）先写本地完整稿；2）必须包含‘国内重大新闻’‘国际重大新闻’独立栏目；3）产业判断要有，但不能替代综合新闻栏目；4）先把内容写对、写全，再考虑其他分发动作；5）飞书文档现阶段不作为必需交付项。默认输出到 /root/ai/2.情报跟踪/ ，并按日报技能流程执行。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "accountId": "news"
+      },
+      "state": {
+        "nextRunAtMs": 1774884600000,
+        "lastRunAtMs": 1774798200007,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 1535941,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}

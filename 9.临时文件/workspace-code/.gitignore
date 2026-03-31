@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+.pytest_cache/
+
+# Virtual environments
+.venv/
+.venv-*/
+
+# OpenClaw runtime / local state
+.openclaw/
+
+# Secrets / local auth artifacts
+*.cookies.txt
+linuxdo.cookies.txt
+*.token
+*.secret
+*.key
+*.pem
+*.env
+.env*
+
+# Large/generated probe outputs
+linuxdo_oauth_sites_probe.json
+linuxdo_oauth_sites_probe.stdout.json
+
+# Recordings / media outputs
+test_recordings/
+
+# OS/editor
+.DS_Store

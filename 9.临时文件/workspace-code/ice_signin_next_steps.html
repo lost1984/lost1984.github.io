@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9.临时文件/workspace-code/ice_signin_next_steps.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="USER.html">← USER</a> <span class="sep">·</span> <a href="linuxdo_oauth_sites_summary.html">linuxdo_oauth_sites_summary →</a></div>
+  <article class="doc">
+  <h1>ice_signin 后续优化记录</h1>
+
+<h2>当前状态</h2>
+<p><code>ice_signin</code> 目前已经有一版可用的保底方案：</p>
+<ul>
+<li>文件：<code>/root/.openclaw/workspace-code/ice_signin.py</code></li>
+<li>当前可用模式：<code>browser-checkin</code></li>
+<li>当前结论：</li>
+<li>浏览器驱动签到链路已打通</li>
+<li>真实签到动作已确认：<code>POST https://signv.ice.v.ua/checkin?next=/embed</code></li>
+<li>纯 requests 方案仍未完全闭环</li>
+</ul>
+
+<h2>已完成的关键点</h2>
+<ol>
+<li>主站 <code>ice.v.ua</code> 登录态获取已打通</li>
+<li><code>signv.ice.v.ua</code> iframe 真实上下文已定位</li>
+<li>已确认跨域 iframe 是主要难点</li>
+<li>已抓到真实签到动作请求</li>
+<li>已落地浏览器驱动版保底签到逻辑</li>
+</ol>
+
+<h2>后续准备优化的方向</h2>
+
+<h3>1. 提升 browser-checkin 稳定性</h3>
+<p>目标：让浏览器驱动版更适合长期定时运行。</p>
+
+<p>待做：</p>
+<ul>
+<li>自动寻找目标 page，而不是依赖固定页面状态</li>
+<li>如果页面不存在则自动新开 tab</li>
+<li>自动判断登录是否失效</li>
+<li>自动区分：</li>
+<li>今日已签到</li>
+<li>刚刚签到成功</li>
+<li>登录失效</li>
+<li>页面结构变化</li>
+<li>按钮不存在</li>
+<li>输出更稳定的退出码</li>
+</ul>
+
+<h3>2. 配置化</h3>
+<p>目标：减少硬编码，便于复用。</p>
+
+<p>待做：</p>
+<ul>
+<li>支持配置文件写入 <code>cdp_url</code></li>
+<li>支持多个页面 URL 候选</li>
+<li>支持超时、等待时间、重试次数配置</li>
+<li>支持指定远程调试实例</li>
+</ul>
+
+<h3>3. 定时执行化</h3>
+<p>目标：让它能挂 cron / 调度器稳定跑。</p>
+
+<p>待做：</p>
+<ul>
+<li>补充更适合 cron 的简洁输出模式</li>
+<li>增加日志文件输出选项</li>
+<li>增加失败重试机制</li>
+<li>增加成功/失败通知接口（后续可接飞书/QQ/其他提醒）</li>
+</ul>
+
+<h3>4. 继续尝试压缩成纯脚本版</h3>
+<p>目标：评估是否能在未来把浏览器依赖降到最低。</p>
+
+<p>当前已知困难：</p>
+<ul>
+<li>仅靠 <code>auth_token + user_id + signv session</code> 仍不足以稳定重放</li>
+<li><code>signv</code> 很可能依赖真实浏览器上下文 / iframe 链路 / 时序状态</li>
+</ul>
+
+<p>后续可尝试：</p>
+<ul>
+<li>更完整抓取签到前后的 cookie 差异</li>
+<li>对比浏览器点击前后的请求序列</li>
+<li>检查是否存在额外隐藏字段 / CSRF / 中间跳转态</li>
+<li>评估是否能用更完整的 HTTP 重放替代浏览器点击</li>
+</ul>
+
+<h3>5. 文档与使用说明</h3>
+<p>目标：以后重新接手时更快恢复上下文。</p>
+
+<p>待做：</p>
+<ul>
+<li>补一份使用说明文档</li>
+<li>补一份故障排查文档</li>
+<li>明确哪些前提必须满足：</li>
+<li>Chrome 已登录</li>
+<li>远程调试口可访问</li>
+<li>签到页可打开</li>
+</ul>
+
+<h2>当前建议</h2>
+<p>如果后续重新启动这个项目，优先顺序建议是：</p>
+<ol>
+<li>先把 <code>browser-checkin</code> 做稳</li>
+<li>再做 cron / 通知 / 日志</li>
+<li>最后再尝试纯 requests 版闭环</li>
+</ol>
+
+<h2>当前封存结论</h2>
+<p><code>ice_signin</code> 项目先暂告一段落。</p>
+<p>后续如继续推进，优先按“浏览器驱动保底方案稳定化”这条线做，不建议一上来就重新死磕纯 requests 版。</p>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="USER.html">← USER</a> <span class="sep">·</span> <a href="linuxdo_oauth_sites_summary.html">linuxdo_oauth_sites_summary →</a></div></div>
+</body>
+</html>
