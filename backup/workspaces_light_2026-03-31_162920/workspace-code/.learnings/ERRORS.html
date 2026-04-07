@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>backup/workspaces_light_2026-03-31_162920/workspace-code/.learnings/ERRORS.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="FEATURE_REQUESTS.html">FEATURE_REQUESTS →</a></div>
+  <article class="doc">
+  <h1>ERRORS</h1>
+
+<h2>[ERR-20260330-001] browser-checkin CDP rigid-port dependency</h2>
+
+<p><strong>Logged</strong>: 2026-03-30T10:49:00+08:00</p>
+<p><strong>Priority</strong>: high</p>
+<p><strong>Status</strong>: pending</p>
+<p><strong>Area</strong>: infra</p>
+
+<h3>Summary</h3>
+<p><code>ice_signin.py</code> 的 <code>browser-checkin</code> 之前强依赖固定 CDP 端口 <code>127.0.0.1:9223</code>，端口失效后只会报错退出，没有自动探测或自启动浏览器。</p>
+
+<h3>Error</h3>
+<pre><code>browser-checkin 模式需要提供 --cdp-url，例如 http://127.0.0.1:9223</code></pre>
+
+<h3>Context</h3>
+<ul>
+<li>用户要求直接执行已可用签到脚本</li>
+<li>本机 9223 端口无监听</li>
+<li>实际可改进方向：自动探测常见 CDP 端口；必要时自动拉起 Chrome 到指定端口</li>
+</ul>
+
+<h3>Suggested Fix</h3>
+<ol>
+<li>为脚本加入多个 CDP 端口自动探测</li>
+<li>当显式端口不可用时，尝试自动启动 Chrome/Chromium</li>
+<li>输出最终使用的 <code>cdp_url</code> 和启动信息，便于排障</li>
+</ol>
+
+<h3>Metadata</h3>
+<ul>
+<li>Reproducible: yes</li>
+<li>Related Files: /root/.openclaw/workspace-code/ice_signin.py</li>
+<li>See Also: /root/.openclaw/workspace-code/memory/2026-03-29.md</li>
+</ul>
+
+<hr>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="FEATURE_REQUESTS.html">FEATURE_REQUESTS →</a></div></div>
+</body>
+</html>

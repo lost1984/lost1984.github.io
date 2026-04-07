@@ -1,0 +1,8 @@
+{
+  "session_cookie": "替换成 signv.ice.v.ua 的 session",
+  "cookie_file": "linuxdo.cookies.txt",
+  "ice_auth_token": "替换成 ice.v.ua 的 auth_token",
+  "ice_user_id": "3023",
+  "theme": "light",
+  "lang": "zh-CN"
+}

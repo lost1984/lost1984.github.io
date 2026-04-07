@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>backup/workspaces_light_2026-03-31_162920/workspace-code/AI_SITE_SETUP.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="AGENTS.html">← AGENTS</a> <span class="sep">·</span> <a href="BOOTSTRAP.html">BOOTSTRAP →</a></div>
+  <article class="doc">
+  <h1>/root/ai 静态网站方案</h1>
+
+<h2>方案结论</h2>
+
+<p>最低成本、最好维护的方案：</p>
+
+<ul>
+<li>托管：GitHub Pages</li>
+<li>内容源：<code>/root/ai</code></li>
+<li>同步方式：本机定时任务 + git push</li>
+<li>展示形式：静态文件镜像 + 自动生成 <code>index.html</code></li>
+</ul>
+
+<p>这个方案的优点：</p>
+
+<ol>
+<li>成本几乎为 0</li>
+<li>维护简单，只有 git + 一个脚本</li>
+<li>不需要数据库</li>
+<li>不需要后端服务</li>
+<li>出问题容易排查</li>
+</ol>
+
+<h2>已生成文件</h2>
+
+<ul>
+<li><code>site_sync.py</code>：把 <code>/root/ai</code> 镜像到网站仓库，并生成首页</li>
+<li><code>sync_ai_to_site.sh</code>：执行同步、提交、推送</li>
+<li><code>ai-site-sync.service</code>：systemd 单次同步任务</li>
+<li><code>ai-site-sync.timer</code>：systemd 定时器，默认每 15 分钟同步一次</li>
+</ul>
+
+<h2>你需要准备的唯一东西</h2>
+
+<p>一个 GitHub 仓库，建议：</p>
+
+<ul>
+<li>仓库名：<code>&lt;github用户名&gt;.github.io</code></li>
+</ul>
+
+<p>这样最省事，推上去直接就是主页站点。</p>
+
+<h2>一次性初始化步骤</h2>
+
+<h3>1. 创建 GitHub 仓库</h3>
+
+<p>在 GitHub 新建一个公开仓库：</p>
+
+<ul>
+<li>名称：<code>&lt;your-name&gt;.github.io</code></li>
+</ul>
+
+<h3>2. 本机 clone 仓库</h3>
+
+<pre><code class="language-bash">git clone git@github.com:&lt;your-name&gt;/&lt;your-name&gt;.github.io.git /root/ai-site</code></pre>
+
+<p>如果不用 SSH，也可以：</p>
+
+<pre><code class="language-bash">git clone https://github.com/&lt;your-name&gt;/&lt;your-name&gt;.github.io.git /root/ai-site</code></pre>
+
+<h3>3. 配置 git 身份</h3>
+
+<pre><code class="language-bash">git config --global user.name &quot;YT&quot;
+git config --global user.email &quot;your-email@example.com&quot;</code></pre>
+
+<h3>4. 如果是 HTTPS 推送</h3>
+
+<p>建议配置 GitHub token，避免每次输密码。</p>
+
+<h2>手动先跑一次</h2>
+
+<pre><code class="language-bash">bash /root/.openclaw/workspace-code/sync_ai_to_site.sh</code></pre>
+
+<h2>安装 systemd 定时同步</h2>
+
+<pre><code class="language-bash">cp /root/.openclaw/workspace-code/ai-site-sync.service /etc/systemd/system/
+cp /root/.openclaw/workspace-code/ai-site-sync.timer /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now ai-site-sync.timer</code></pre>
+
+<h2>常用命令</h2>
+
+<p>查看定时器：</p>
+
+<pre><code class="language-bash">systemctl status ai-site-sync.timer
+systemctl list-timers | grep ai-site-sync</code></pre>
+
+<p>手动执行一次：</p>
+
+<pre><code class="language-bash">systemctl start ai-site-sync.service</code></pre>
+
+<p>看日志：</p>
+
+<pre><code class="language-bash">journalctl -u ai-site-sync.service -n 50 --no-pager</code></pre>
+
+<h2>当前展示效果</h2>
+
+<p>脚本会：</p>
+
+<ol>
+<li>把 <code>/root/ai</code> 下文件镜像到网站仓库</li>
+<li>自动生成首页 <code>index.html</code></li>
+<li>首页展示：</li>
+</ol>
+<ul>
+<li>文件目录</li>
+<li>文本文件预览</li>
+</ul>
+<ol>
+<li>每次有变化自动 commit + push</li>
+</ol>
+
+<h2>注意事项</h2>
+
+<h3>1. 这是“公开静态站”</h3>
+
+<p>只适合公开内容。</p>
+
+<p>如果 <code>/root/ai</code> 里有敏感信息、账号、密钥、隐私文档，不要直接同步。</p>
+
+<h3>2. 二进制大文件不适合</h3>
+
+<p>GitHub Pages 不适合放很大的文件。</p>
+
+<h3>3. 目前是全量公开镜像思路</h3>
+
+<p>如果后面你要：</p>
+
+<ul>
+<li>只同步某几个子目录</li>
+<li>排除某些文件类型</li>
+<li>给首页做更好看的导航</li>
+<li>加搜索</li>
+<li>加密码保护</li>
+</ul>
+
+<p>我可以继续在这个 MVP 上往上加。</p>
+
+<h2>我建议的下一步</h2>
+
+<p>最实用的顺序：</p>
+
+<ol>
+<li>你先建 GitHub Pages 仓库</li>
+<li>给我仓库地址</li>
+<li>我把 clone、首次 push、定时器启用全部给你接好</li>
+</ol>
+
+<p>如果你愿意，我下一步可以直接把它做成：</p>
+
+<ul>
+<li>首页更像知识库</li>
+<li>自动排除敏感目录</li>
+<li>支持按目录导航</li>
+<li>支持 Markdown 更好显示</li>
+</ul>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="AGENTS.html">← AGENTS</a> <span class="sep">·</span> <a href="BOOTSTRAP.html">BOOTSTRAP →</a></div></div>
+</body>
+</html>

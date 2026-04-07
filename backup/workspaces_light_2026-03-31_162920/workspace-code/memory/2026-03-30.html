@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>backup/workspaces_light_2026-03-31_162920/workspace-code/memory/2026-03-30.md</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; line-height: 1.8; color: #222; }
+    h1,h2,h3,h4 { line-height: 1.3; margin-top: 1.4em; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f6f8fa; padding: 1rem; border-radius: 8px; overflow: auto; }
+    code { background: #f6f8fa; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    .topbar { margin-bottom: 1.5rem; color: #666; padding: 10px 14px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; }
+    .sep { color: #98a2b3; margin: 0 4px; }
+    ul, ol { padding-left: 1.5rem; }
+    .doc { margin-top: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    blockquote { margin: 1rem 0; padding: 0.75rem 1rem; border-left: 4px solid #d9d9d9; background: #fafafa; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+    .bottom-nav { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; display: flex; gap: 12px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><a href="../../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="2026-03-29.html">← 2026-03-29</a></div>
+  <article class="doc">
+  
+<ul>
+<li>用户明确纠偏：目标不是只做站点匿名接口探测，而是“登录这些站点，拿到用户实际账号下的 key，再用真实 key 测模型和可用性”；后续默认按“先执行、后汇报、不先问，除非权限/目标/风险卡住”推进。</li>
+<li>基于现有站名到真实域名映射，已实测确认两站具备真实 API 网关特征：<code>冰の公益</code> 对应 <code>https://ice.v.ua</code>，<code>97公益站</code> 高概率对应 <code>https://api.mmkg.cloud</code>；两站 <code>GET /v1/models</code> 均返回鉴权错误（分别为 <code>API_KEY_REQUIRED</code> 与 <code>未提供令牌</code>），说明模型接口真实存在但需要用户 key/token。</li>
+<li><code>ice.v.ua</code> 前端公开配置再次确认：<code>api_base_url</code> 为 <code>https://ice.v.ua</code>，<code>linuxdo_oauth_enabled=true</code>，存在自定义菜单 <code>签到/重置</code>（id <code>f8c961a6027f9cb0</code>，URL <code>https://signv.ice.v.ua/embed</code>）、<code>延迟监测</code>、<code>实时号池</code>（<code>https://pool.ice.v.ua/</code>）。</li>
+<li>已将阶段性站点结果沉淀到工作区文件 <a href="/root/.openclaw/workspace-code/linuxdo_oauth_sites_summary.html"><code>/root/.openclaw/workspace-code/linuxdo_oauth_sites_summary.md</code></a>，其中记录了 <code>ice.v.ua</code> 与 <code>api.mmkg.cloud</code> 的已验证事实、模型接口状态、签到能力和当前阻塞。</li>
+<li>对 <code>ice.v.ua</code> 的前端 bundle 进一步逆向后确认：站内存在明确的 API Keys 页面与完整 key 管理逻辑。关键证据包括 <code>KeysView-BjnUhUwy.js</code>、<code>API Keys</code> 路由 <code>/keys</code>，以及前端具备 <code>create</code> / <code>delete</code> key、展示 <code>name/key/group/usage/rate_limit/expires_at/status/last_used_at/created_at</code> 等字段的能力；还内置了将 key 导出为 <code>OPENAI_API_KEY</code> / <code>ANTHROPIC_AUTH_TOKEN</code> / <code>GEMINI_API_KEY</code> 用于 CLI 的说明，证明该站 key 页面是后续“登录后拿真实 key”最优落点。</li>
+<li>当前最明确的后续执行路径是：优先恢复/复用 <code>ice.v.ua</code> 登录态 -&gt; 直接进入 <code>/keys</code> -&gt; 拉取或创建真实 key -&gt; 用该 key 调 <code>https://ice.v.ua/v1/models</code> 做实际可用性验证，再复制同样方法到其他授权公益站。</li>
+</ul>
+  </article>
+  <div class="bottom-nav"><div class="topbar"><a href="../../../../index.html">← 首页</a> <span class="sep">·</span> <a href="index.html">所在目录</a> <span class="sep">·</span> <a href="2026-03-29.html">← 2026-03-29</a></div></div>
+</body>
+</html>

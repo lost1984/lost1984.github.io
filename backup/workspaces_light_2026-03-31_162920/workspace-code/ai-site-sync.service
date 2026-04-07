@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync /root/ai to GitHub Pages repository
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+Environment="SRC_DIR=/root/ai"
+Environment="SITE_REPO_DIR=/root/ai-site"
+Environment="SITE_GIT_DIR=/root/.ai-site-git"
+Environment="SITE_TITLE=YT的小龙虾"
+Environment="BRANCH=master"
+ExecStart=/usr/bin/bash /root/.openclaw/workspace-code/sync_ai_to_site.sh
